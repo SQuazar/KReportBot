@@ -1,0 +1,27 @@
+services:
+  mongo:
+    image: mongo:8.2.4
+    container_name: mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: reports
+    volumes:
+      - mongo-data:/data/db
+  reports:
+    image: openjdk:27-ea
+    restart: unless-stopped
+    volumes:
+      - .:/app
+    entrypoint: ["java", "-jar", "/app/KReportBot-1.0-SNAPSHOT.jar"]
+    environment:
+      - MONGO_URI=mongodb://mongo:27017
+      - MONGO_DB=reports
+      - BOT_TOKEN=access_token
+      - GUILD_ID=1117566316157603841
+      - REPORT_CHANNEL=1117566344150392945
+      - MODERATOR_ROLE=1117566389377581126
+    depends_on:
+      - mongo
+
+volumes:
+  mongo-data:
