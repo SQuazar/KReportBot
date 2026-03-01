@@ -38,7 +38,7 @@ tasks.shadowJar {
     version = "${project.version}"
 
     manifest {
-        attributes["Main-Class"] = "net.nullpointer.kreport.Main"
+        attributes["Main-Class"] = "net.nullpointer.kreport.MainKt"
     }
 }
 
