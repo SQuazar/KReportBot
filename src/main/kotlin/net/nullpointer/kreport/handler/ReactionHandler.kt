@@ -1,6 +1,7 @@
 package net.nullpointer.kreport.handler
 
 import dev.minn.jda.ktx.coroutines.await
+import kotlinx.datetime.Clock
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent
 import net.dv8tion.jda.api.requests.RestAction
@@ -51,6 +52,7 @@ class ReactionHandler(val reportService: ReportService) : GenericEventHandler<Me
 
         report.status = status
         report.moderatorId = event.user?.idLong
+        report.updatedAt = Clock.System.now()
         reportService.saveReport(report)
     }
 }

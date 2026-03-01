@@ -17,5 +17,5 @@ data class ReportData(
     @Contextual
     val createdAt: Instant = Clock.System.now(),
     @Contextual
-    val updatedAt: Instant = Clock.System.now()
+    var updatedAt: Instant = Clock.System.now()
 )
